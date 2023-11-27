@@ -4,6 +4,18 @@ from typing import List
 
 
 def get_full_paths(class_name: str):
+    """
+        возвращает список путей для всех изображений определенного класса, который будет передан в функцию
+
+        parameters
+
+        class_name : str
+          имя класса
+        returns
+
+        list
+        спиок путей к изображениям определенного класса
+    """
     full_path = os.path.abspath('dataset')
     class_path = os.path.join(full_path, class_name)
     image_names = os.listdir(class_path)
@@ -13,6 +25,19 @@ def get_full_paths(class_name: str):
 
 
 def get_rel_paths(class_name: str):
+    """
+       возвраает список относительных путей относительно файла dataset для
+       всех изображений определенного класса, который будет передан в функцию
+
+       parameters
+
+       class_name : str
+         имя класса
+       returns
+
+       list
+       cписок относительных путей к изображениям
+    """
     rel_path = os.path.relpath('dataset')
     class_path = os.path.join(rel_path, class_name)
     image_names = os.listdir(class_path)

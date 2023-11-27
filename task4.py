@@ -2,6 +2,19 @@ import os
 
 
 def get_next(class_name: str)->str:
+    """
+       данная функция возвращает относительрный путь для объекта класса, переданного
+       в функцию
+
+       parameters
+
+       class_name : str
+         имя класса
+       returns
+
+       str
+       относительный путь к объекту
+    """
     path = os.path.join('dataset', class_name)
     class_names = os.listdir(path)
     class_names.append(None)
