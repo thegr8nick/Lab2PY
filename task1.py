@@ -1,0 +1,42 @@
+import os
+import csv
+from typing import List
+
+
+def get_full_paths(class_name: str):
+    full_path = os.path.abspath('dataset')
+    class_path = os.path.join(full_path, class_name)
+    image_names = os.listdir(class_path)
+    image_full_paths = list(
+        map(lambda name: os.path.join(class_path, name), image_names))
+    return image_full_paths
+
+
+def get_rel_paths(class_name: str):
+    rel_path = os.path.relpath('dataset')
+    class_path = os.path.join(rel_path, class_name)
+    image_names = os.listdir(class_path)
+    image_rel_paths = list(
+        map(lambda name: os.path.join(class_path, name), image_names))
+    return image_rel_paths
+
+
+def main() :
+
+    class1 = 'rose'
+    class2 = 'tulip'
+
+    rose_full_paths = get_full_paths(class1)
+    rose_rel_paths = get_rel_paths(class1)
+    tulip_full_paths = get_full_paths(class2)
+    tulip_rel_paths = get_rel_paths(class2)
+
+    with open('paths.csv', 'w') as csv_file:
+        writer = csv.writer(csv_file, delimiter=',', lineterminator='\r')
+        for full_path, rel_path in zip(rose_full_paths, rose_rel_paths):
+            writer.writerow([full_path, rel_path, class1])
+        for full_path, rel_path in zip(tulip_full_paths, tulip_rel_paths):
+            writer.writerow([full_path, rel_path, class2])
+
+if __name__ == "__main__":
+    main()
